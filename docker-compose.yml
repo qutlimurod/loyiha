@@ -1,0 +1,27 @@
+version: "3.9"
+
+services:
+
+  backend:
+    build: ./backend
+    container_name: django-backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+    environment:
+      - DJANGO_ALLOWED_HOSTS=*
+      - DJANGO_DEBUG=True
+
+  frontend:
+    build: ./frontend
+    container_name: react-frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+    stdin_open: true 
+    environment:
+      - CHOKIDIR_USEPOLLING=true
+      
+        
